@@ -1,0 +1,57 @@
+#:import facade plyer.gyroscope
+<GyroscopeInterface>:
+    facade: facade
+    orientation: 'vertical'
+    padding: '20dp'
+    spacing: '10dp'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, .1
+            Button:
+                id: enable_button
+                text: 'Enable Sensor'
+                disabled: False
+                on_release:
+                    root.enable()
+                    disable_button.disabled = not disable_button.disabled
+                    enable_button.disabled = not enable_button.disabled
+            Button:
+                id: disable_button
+                text: 'Disable Sensor'
+                disabled: True
+                on_release:
+                    root.disable()
+                    disable_button.disabled = not disable_button.disabled
+                    enable_button.disabled = not enable_button.disabled
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Rate of rotation'
+            Label:
+                text: 'including drift compensation'
+            Label:
+                text: '(' + str(root.x_calib) + ','
+            Label:
+                text: str(root.y_calib) + ','
+            Label:
+                text: str(root.z_calib) + ')'
+            Label:
+                text: 'Rate of rotation'
+            Label:
+                text: 'w/o drift compensation'
+            Label:
+                text: '(' + str(root.x_speed) + ','
+            Label:
+                text: str(root.y_speed) + ','
+            Label:
+                text: str(root.z_speed) + ')'
+            Label:
+                text: 'Estimated Drift'
+            Label:
+                text: '(' + str(root.x_drift) + ','
+            Label:
+                text: str(root.y_drift) + ','
+            Label:
+                text: str(root.z_drift) + ')'
